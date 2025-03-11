@@ -17,20 +17,20 @@
     <body>
         <div id="main-container">
             <nav>
-                <a href="index.html" id="logo">
+                <a href="{{ path('app_main_home') }}" id="logo">
                 <img src="{{ asset('images/logo.png') }}" alt="Logo TaskLinker" />
                 </a>
                 <ul id="main-menu">
-                <li class="active">
-                    <a href="index.html">
-                    <i class="fa-solid fa-list-check"></i> Projets
-                    </a>
-                </li>
-                <li>
-                    <a href="employes.html">
-                    <i class="fa-regular fa-user"></i> Équipe
-                    </a>
-                </li>
+                    <li class="active">
+                        <a href="{{ path('app_main_home') }}">
+                            <i class="fa-solid fa-list-check"></i> Projets
+                        </a>
+                    </li>
+                    <li>
+                        <a href="employes.html">
+                            <i class="fa-regular fa-user"></i> Équipe
+                        </a>
+                    </li>
                 </ul>
             </nav>
 

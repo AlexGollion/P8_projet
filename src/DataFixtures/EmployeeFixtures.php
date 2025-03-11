@@ -2,37 +2,37 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Employe;
-use App\Enum\EmployeStatut;
+use App\Entity\employee;
+use App\Enum\employeeStatut;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 
-class EmployeFixtures extends Fixture implements FixtureGroupInterface
+class EmployeeFixtures extends Fixture implements FixtureGroupInterface
 {
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
         for ($i = 0; $i < 4; $i++) {
-            $employe = new Employe();
-            $employe->setNom($faker->lastName);
-            $employe->setPrenom($faker->firstName);
-            $employe->setEmail($faker->email);
-            $employe->setDateEntre($faker->dateTimeBetween('-10 years', 'now'));
+            $employee = new Employee();
+            $employee->setName($faker->lastName);
+            $employee->setFirst_name($faker->firstName);
+            $employee->setEmail($faker->email);
+            $employee->setDate($faker->dateTimeBetween('-10 years', 'now'));
             $j = rand(1, 3);
             switch ($j) {
                 case 1:
-                    $employe->setStatut(EmployeStatut::cdd);
+                    $employee->setStatut(EmployeeStatut::cdd);
                     break;
                 case 2: 
-                    $employe->setStatut(EmployeStatut::cdi);
+                    $employee->setStatut(EmployeeStatut::cdi);
                     break;
                 case 3:
-                    $employe->setStatut(EmployeStatut::freelance);
+                    $employee->setStatut(EmployeeStatut::freelance);
                     break;
             }
-            $manager->persist($employe);
+            $manager->persist($employee);
         } 
 
 

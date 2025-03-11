@@ -2,22 +2,22 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Projet;
+use App\Entity\Project;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 
-class ProjetFixtures extends Fixture implements FixtureGroupInterface
+class ProjectFixtures extends Fixture implements FixtureGroupInterface
 {
     public function load(ObjectManager $manager): void
     {
         $faker = Factory::create('fr_FR');
         for ($i = 0; $i < 3; $i++) {
-            $projet = new Projet();
-            $projet->setTitre($faker->company);
-            $projet->setArchiver(false); 
-            $manager->persist($projet);
+            $project = new Project();
+            $project->setTitle($faker->company);
+            $project->setArchive(false); 
+            $manager->persist($project);
 
         }
         $manager->flush();

@@ -2,9 +2,9 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Tache;
-use App\Entity\Projet;
-use App\Entity\Employe;
+use App\Entity\Task;
+use App\Entity\Project;
+use App\Entity\Employee;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Bundle\FixturesBundle\FixtureGroupInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -14,23 +14,23 @@ class AppFixtures extends Fixture implements FixtureGroupInterface
 {
     public function load(ObjectManager $manager): void
     {
-        $employes = $manager->getRepository(Employe::class)->findAll();
-        $projets = $manager->getRepository(Projet::class)->findAll();
-        $taches = $manager->getRepository(Tache::class)->findAll();
+        $employees = $manager->getRepository(Employee::class)->findAll();
+        $projects = $manager->getRepository(Project::class)->findAll();
+        $tasks = $manager->getRepository(Task::class)->findAll();
 
-        foreach ($taches as $tache) {
-            $employe = $employes[array_rand($employes)];
-            $projet = $projets[array_rand($projets)];
-            $tache->setEmploye($employe);
-            $tache->setProjet($projet);
-            $manager->persist($tache);
+        foreach ($tasks as $task) {
+            $employee = $employees[array_rand($employees)];
+            $project = $projects[array_rand($projects)];
+            $task->setEmployee($employee);
+            $task->setProject($project);
+            $manager->persist($task);
 
-            $employe->addProjet($projet);
-            $manager->persist($employe);
+            $employee->addProject($project);
+            $manager->persist($employee);
 
-            $projet->addEmploye($employe);
-            $projet->addTach($tache);
-            $manager->persist($projet);
+            $project->addEmployee($employee);
+            $project->addTask($task);
+            $manager->persist($project);
         }
 
         $manager->flush();

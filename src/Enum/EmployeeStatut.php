@@ -2,7 +2,7 @@
 
 namespace App\Enum;
 
-enum EmployeStatut: string
+enum EmployeeStatut: string
 {
     case cdd = 'cdd';
     case cdi = 'cdi';

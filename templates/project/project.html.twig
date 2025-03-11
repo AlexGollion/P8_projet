@@ -1,16 +1,16 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} {{ projet.titre }} - TaskLinker {% endblock %}
+{% block title %} {{ project.title }} - TaskLinker {% endblock %}
 
 {% block header %}
     <div class="flex-header">
-        <h1>{{ projet.titre }}</h1>
+        <h1>{{ project.title }}</h1>
         <div class="user-list">
-            {% for employe in projet.employes %}
-                <div class="avatar">{{ employe.prenom|first }}{{ employe.nom|first }}</div>
+            {% for employee in project.employees %}
+                <div class="avatar">{{ employee.first_name|first }}{{ employee.name|first }}</div>
             {% endfor %}
         </div>
-        <a class="button" href="projet-edit.html">Modifier</a>
+        <a class="button" href="project-edit.html">Modifier</a>
     </div>
 {% endblock %}
 
@@ -21,18 +21,18 @@
             <div class="task-column">
                 <h2>To Do</h2>
                 <div class="tasks-list">
-                    {% for tache in taches %}
-                        {% if tache.statut == enum('App\\Enum\\TacheStatut').ToDo %}
+                    {% for task in tasks %}
+                        {% if task.statut == enum('App\\Enum\\TaskStatut').ToDo %}
                         <a class="task" href="tache.html">
-                            <h3>{{ tache.titre }}</h3>
-                            <p>{{ tache.description }}</p>
+                            <h3>{{ task.title }}</h3>
+                            <p>{{ task.description }}</p>
                             <div class="task-infos">
                                 <div class="task-deadline">
-                                    <i class="fa-regular fa-calendar"></i> {{  tache.date|date('d-m-Y') }}
+                                    <i class="fa-regular fa-calendar"></i> {{  task.date|date('d-m-Y') }}
                                 </div>
                                 <div class="mini-user">
-                                    {{ tache.employe.prenom|first }}
-                                    {{ tache.employe.nom|first }}
+                                    {{ task.employee.first_name|first }}
+                                    {{ task.employee.name|first }}
                               </div>
                             </div>
                         </a>
@@ -46,18 +46,18 @@
             <div class="task-column">
                 <h2>Doing</h2>
                 <div class="tasks-list">
-                    {% for tache in taches %}
-                        {% if tache.statut == enum('App\\Enum\\TacheStatut').Doing %}
+                    {% for task in tasks %}
+                        {% if task.statut == enum('App\\Enum\\TaskStatut').Doing %}
                         <a class="task" href="tache.html">
-                            <h3>{{ tache.titre }}</h3>
-                            <p>{{ tache.description }}</p>
+                            <h3>{{ task.title }}</h3>
+                            <p>{{ task.description }}</p>
                             <div class="task-infos">
                                 <div class="task-deadline">
-                                    <i class="fa-regular fa-calendar"></i> {{  tache.date|date('d-m-Y') }}
+                                    <i class="fa-regular fa-calendar"></i> {{  task.date|date('d-m-Y') }}
                                 </div>
                                 <div class="mini-user">
-                                    {{ tache.employe.prenom|first }}
-                                    {{ tache.employe.nom|first }}
+                                    {{ task.employee.first_name|first }}
+                                    {{ task.employee.name|first }}
                                 </div>
                             </div>
                         </a>
@@ -71,15 +71,15 @@
             <div class="task-column">
                 <h2>Done</h2>
                 <div class="tasks-list">
-                    {% for tache in taches %}
-                        {% if tache.statut == enum('App\\Enum\\TacheStatut').Done %}
+                    {% for task in tasks %}
+                        {% if task.statut == enum('App\\Enum\\TaskStatut').Done %}
                         <a class="task" href="tache.html">
-                            <h3>{{ tache.titre }}</h3>
-                            <p>{{ tache.description }}</p>
+                            <h3>{{ task.title }}</h3>
+                            <p>{{ task.description }}</p>
                             <div class="task-infos">
                                 <div class="mini-user">
-                                    {{ tache.employe.prenom|first }}
-                                    {{ tache.employe.nom|first }}
+                                    {{ task.employee.first_name|first }}
+                                    {{ task.employee.name|first }}
                                 </div>
                             </div>
                         </a>

@@ -2,7 +2,7 @@
 
 namespace App\Enum;
 
-enum TacheStatut: string
+enum TaskStatut: string
 {
     case ToDo = 'to do';
     case Doing = 'doing';

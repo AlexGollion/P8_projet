@@ -2,13 +2,13 @@
 
 namespace App\Entity;
 
-use App\Repository\TacheRepository;
+use App\Repository\TaskRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
-use App\Enum\TacheStatut;
+use App\Enum\TaskStatut;
 
-#[ORM\Entity(repositoryClass: TacheRepository::class)]
-class Tache
+#[ORM\Entity(repositoryClass: TaskRepository::class)]
+class Task
 {
     #[ORM\Id]
     #[ORM\GeneratedValue]
@@ -16,7 +16,7 @@ class Tache
     private ?int $id = null;
 
     #[ORM\Column(length: 255)]
-    private ?string $titre = null;
+    private ?string $title = null;
 
     #[ORM\Column(length: 255, nullable: true)]
     private ?string $description = null;
@@ -25,27 +25,27 @@ class Tache
     private ?\DateTimeInterface $date = null;
 
     #[ORM\Column(length: 255)]
-    private ?TacheStatut $statut = null;
+    private ?TaskStatut $statut = null;
 
-    #[ORM\ManyToOne(inversedBy: 'taches')]
-    private ?Projet $projet = null;
+    #[ORM\ManyToOne(inversedBy: 'tasks')]
+    private ?Project $project = null;
 
-    #[ORM\ManyToOne(inversedBy: 'taches')]
-    private ?Employe $employe = null;
+    #[ORM\ManyToOne(inversedBy: 'tasks')]
+    private ?Employee $employee = null;
 
     public function getId(): ?int
     {
         return $this->id;
     }
 
-    public function getTitre(): ?string
+    public function getTitle(): ?string
     {
-        return $this->titre;
+        return $this->title;
     }
 
-    public function setTitre(string $titre): static
+    public function setTitle(string $title): static
     {
-        $this->titre = $titre;
+        $this->title = $title;
 
         return $this;
     }
@@ -74,38 +74,38 @@ class Tache
         return $this;
     }
 
-    public function getStatut(): ?TacheStatut
+    public function getStatut(): ?TaskStatut
     {
         return $this->statut;
     }
 
-    public function setStatut(TacheStatut $statut): static
+    public function setStatut(TaskStatut $statut): static
     {
         $this->statut = $statut;
 
         return $this;
     }
 
-    public function getProjet(): ?Projet
+    public function getProject(): ?Project
     {
-        return $this->projet;
+        return $this->project;
     }
 
-    public function setProjet(?Projet $projet): static
+    public function setProject(?Project $project): static
     {
-        $this->projet = $projet;
+        $this->project = $project;
 
         return $this;
     }
 
-    public function getEmploye(): ?Employe
+    public function getEmployee(): ?Employee
     {
-        return $this->employe;
+        return $this->employee;
     }
 
-    public function setEmploye(?Employe $employe): static
+    public function setEmployee(?Employee $employee): static
     {
-        $this->employe = $employe;
+        $this->employee = $employee;
 
         return $this;
     }

@@ -2,14 +2,14 @@
 
 namespace App\Form;
 
-use App\Entity\Employe;
-use App\Entity\Projet;
+use App\Entity\Employee;
+use App\Entity\Project;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class ProjetType extends AbstractType
+class ProjectType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
@@ -18,7 +18,7 @@ class ProjetType extends AbstractType
                 'label' => 'Titre du projet',
             ])
             ->add('employes', EntityType::class, [
-                'class' => Employe::class,
+                'class' => Employee::class,
                 'choice_label' => 'id',
                 'multiple' => true,
             ])
