@@ -8,18 +8,37 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 
 class ProjectType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('titre', TextType::class, [
+            ->add('title', TextType::class, [
                 'label' => 'Titre du projet',
+                'label_attr' => [
+                    'class' => 'required',
+                    'for' => 'projet_name',
+                ],
+                'attr' => [
+                    'required' => true,
+                    'id' => 'id',
+                    'name' => 'projet[name]',
+                ]
             ])
-            ->add('employes', EntityType::class, [
+            ->add('employees', EntityType::class, [
                 'class' => Employee::class,
-                'choice_label' => 'id',
+                'label' => 'Inviter des membres',
+                'label_attr' => [
+                    'for' => 'projet_employes',
+                ],
+                'attr' => [
+                    'id' => 'projet_employes',
+                ],
+                'choice_label' => function(Employee $employee) {
+                    return mb_substr($employee->getFirst_name(), 0, 1) . '' . mb_substr($employee->getName(), 0, 1);
+                },
                 'multiple' => true,
             ])
         ;
@@ -28,7 +47,7 @@ class ProjectType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Projet::class,
+            'data_class' => Project::class,
         ]);
     }
 }

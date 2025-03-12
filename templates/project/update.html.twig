@@ -1,39 +1,22 @@
 {% extends 'base.html.twig' %}
 
-{% block title %} {{ project.titre }} - TaskLinker {% endblock %}
+{% block title %} {{ project.title }} - TaskLinker {% endblock %}
 
 {% block body %}
-    <header>
-        <div id="current-user"></div>
-            <div id="title-page">
-            <h1>{{ project.titre }}</h1>
-        </div>
-    </header>
+    {% block header %}
+        <h1>{{ project.title }}</h1>
+    {% endblock %}
 
-     <div id="content">
-        {{ form_start(form) }}
+    <div id="content">
+        {{ form_start(form, { 'attr' : { 'name': 'projet' }}) }}
             <div>
-                {{ form_row(form.titre) }}
+                {{ form_row(form.title) }}
             </div>
             <div>
-                {{ form_row(form.employes) }}
+                {{ form_row(form.employees) }}
             </div>
+            <br>
+            <button class="button button-submit">Modifier</button>
         {{ form_end(form) }}
-     </div>
-
+    </div>
 {% endblock %}
-            <div id="content">
-               <form name="projet" method="post">
-                  <div><label for="projet_nom" class="required">Titre du projet</label><input type="text" id="projet_nom" name="projet[nom]" required="required" value="TaskLinker" /></div>
-                  <div>
-                     <label for="projet_employes">Inviter des membres</label>
-                     <select id="projet_employes" name="projet[employes][]" multiple="multiple">
-                        <option value="13" selected="selected">Natalie Dillon</option>
-                        <option value="14" selected="selected">Demi Baker</option>
-                        <option value="15">Marie Dupont</option>
-                     </select>
-                  </div>
-                  <br>
-                  <button class="button button-submit">Modifier</button>
-               </form>
-            </div>
