@@ -46,8 +46,8 @@ class Employee
 
     public function __construct()
     {
-        $this->projet = new ArrayCollection();
-        $this->taches = new ArrayCollection();
+        $this->project = new ArrayCollection();
+        $this->tasks = new ArrayCollection();
     }
 
     public function getId(): ?int
